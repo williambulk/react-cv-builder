@@ -3,34 +3,26 @@ import { useState } from 'react'
 
 function Educational( { schoolName = "University Federal of Parana", schoolStudy = "Bachelor of Science", schoolDate = "April 2012" } ) {
 
-    const defaultValues = {
-        schoolName: schoolName,
-        schoolStudy: schoolStudy,
-        schoolDate: schoolDate
-    };
+    // Creating the individual useState
+    const [name, setName] = useState(schoolName);
+    const [study, setStudy] = useState(schoolStudy);
+    const [date, setDate] = useState(schoolDate);
 
-    const [editMode, setEditMode] = useState(true);
+    // Defining Edit Mode
+    const [editMode, setEditMode] = useState(false);
     const handleEditInfo = () => {
         setEditMode(!editMode);
     }
 
-    const [value, setValue] = useState("");
-
     return (
         <>
             <h1>Education</h1>
-            <p>School Name: { defaultValues.schoolName }</p>
-            <p>Study: { defaultValues.schoolStudy }</p>
-            <p>Date: { defaultValues.schoolDate }</p>
-
-            <button onClick={ handleEditInfo }>Edit Info</button>
-            { editMode &&
-            <>
-                <input type="text" value="{ value }" placeholder="Insert the School Name" onChange={ (e) => setValue(e.target.value) } />
-                <input type="text" value="{ value }" placeholder="Insert the Study" onChange={ (e) => setValue(e.target.value) } />
-                <input type="text" value="{ value }" placeholder="Insert the Period of Study" onChange={ (e) => setValue(e.target.value) } />
-            </>
-            }
+            <div className="cv-builder-input">
+                <label>School Name: { ! editMode ? name : <input type="text" value={ name } placeholder="Insert the School Name" onChange={ (event) => setName(event.target.value) } /> }</label>
+                <label>Study: { ! editMode ? study : <input type="text" value={ study } placeholder="Insert the Study" onChange={ (event) => setStudy(event.target.value) } /> }</label>
+                <label>Date: { ! editMode ? date : <input type="text" value={ date } placeholder="Insert the Period of Study" onChange={ (event) => setDate(event.target.value) } /> }</label>
+            </div>
+            <button onClick={ handleEditInfo }>{ editMode ? "Save Info" : "Edit Info" }</button>
         </>
     )
 
