@@ -1,50 +1,17 @@
-# React + TypeScript + Vite
+# CV Builder (React + TypeScript + Vite)
+This project is a simple CV builder application created with React. It allows users to input, edit, and submit their personal, educational, and professional information to dynamically generate a CV.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Features #
+- General Information Section: Add your name, email, and phone number.
+- Educational Experience Section: Input your school name, title of study, and dates of study.
+- Practical Experience Section: Add details about your work experience, including company name, position title, main responsibilities, and the duration of employment.
 
-Currently, two official plugins are available:
+# Edit and Save Functionality #
+- Use the Save button to display your CV in an HTML format.
+- Use the Edit button to return to the input fields with pre-filled values for updating.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# State and Props Usage #
+- The application makes heavy use of React's state and props to manage form inputs and dynamically update the UI.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# Component-Based Architecture #
+- The app is structured with modular and reusable components, stored in a dedicated components directory.
