@@ -1,29 +1,44 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { useState } from 'react'
 
-function General( { generalName = "Your Name", generalEmail = "your@email.com", generalPhone = "(555) 555-5555" } ) {
+function General( { generalName, generalEmail, generalPhone } ) {
 
-    const [name, setName] = useState(generalName);
-    const [email, setEmail] = useState(generalEmail);
-    const [phone, setPhone] = useState(generalPhone);
+    const [general, setGeneral] = useState({
+       name: generalName,
+       email: generalEmail,
+       phone: generalPhone 
+    });
 
     const [editMode, setEditMode] = useState(false);
-    const handleEditInfo = () => {
+
+    const handleEditInfo= () => {
         setEditMode(!editMode);
+    }
+
+    const handleInputChange = (field, value) => {
+        setGeneral( prevState => ({
+            ...prevState,
+            [field]: value
+        }));
     };
 
     return (
         <>
             <h1>General</h1>
             <div className="cv-builder-input">
-                 <label>Name: { ! editMode ? name : <input type='text' value={ name } onChange={ (event) => setName(event.target.value) } /> }</label>
-                 <label>Email: { ! editMode ? email : <input type='text' value={ email } onChange={ (event) => setEmail(event.target.value) } /> }</label>
-                 <label>Phone: {!  editMode ? phone : <input type='text' value={ phone } onChange={ (event) => setPhone(event.target.value) } /> }</label>
+                 <label>Name: { ! editMode ? general.name : <input type='text' value={ general.name } onChange={ (event) => handleInputChange('name', event.target.value) } /> }</label>
+                 <label>Email: { ! editMode ? general.email : <input type='text' value={ general.email } onChange={ (event) => handleInputChange('email', event.target.value) } /> }</label>
+                 <label>Phone: {!  editMode ? general.phone : <input type='text' value={ general.phone } onChange={ (event) => handleInputChange('phone', event.target.value) } /> }</label>
             </div>
             <button onClick={ handleEditInfo }>{ editMode ? "Save Info" : "Edit Info" }</button>
         </>
     )
 
+}
+
+General.defaultProps = {
+    generalName: "Your Name",
+    generalEmail: "your@email.com",
+    generalPhone: "(555) 555-5555"
 }
 
 export default General
